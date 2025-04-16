@@ -1,4 +1,3 @@
-
 import RecodeHeader from '@/components/recodeComponentes/RecodeHeader'
 import Autoimag from '@/components/recodeComponentes/RecodeAutoimag'
 import InfoPrincipal from '@/components/recodeComponentes/RecodeInfoPrincipal'
