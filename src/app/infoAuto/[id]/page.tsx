@@ -8,8 +8,9 @@ import Reserva from '@/components/recodeComponentes/RecodeReserva'
 import Ubicacion from '@/components/recodeComponentes/RecodeUbicacion'
 import { getCarById } from '@/service/serviceRecode'
 
-export default async function Page({ params }: { params: { id: string } }) {
-    const autoData = await getCarById(params.id);
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params; 
+  const autoData = await getCarById(resolvedParams.id);
   
     const auto = {
       nombre: `${autoData.marca} ${autoData.modelo}`,
@@ -75,9 +76,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           </div>
           
           <div className="w-full max-w-6xl border-t border-gray-300 lg:hidden py-4">
-            <Ubicacion 
-              direccion={auto.ubicacion} 
-            />
+            <Ubicacion direccion={auto.ubicacion} />
           </div>
         </main>
       </>
