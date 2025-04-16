@@ -27,6 +27,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       ubicacion: `${autoData.direccion.calle}, ${autoData.direccion.zona}`,
       precio: autoData.precio_por_dia
     };
+    console.log("el data es: ",autoData.combustiblecarro);
   
     return (
       <>
@@ -39,11 +40,11 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
                 nombre={auto.nombre} 
               />
               
-              <InfoPrincipal 
+              <InfoPrincipal
                 asientos={5}
                 puertas={4}
                 transmision="Automática"
-                combustible={autoData.combustiblecarro}
+                combustible={autoData.combustiblecarro[0].tipocombustible.tipo_de_combustible}
                 calificacion={4.5}
                 direccion={auto.ubicacion}
               />
