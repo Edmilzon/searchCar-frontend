@@ -1,4 +1,4 @@
-import Image from 'next/image'
+
 import RecodeHeader from '@/components/recodeComponentes/RecodeHeader'
 import Autoimag from '@/components/recodeComponentes/RecodeAutoimag'
 import InfoPrincipal from '@/components/recodeComponentes/RecodeInfoPrincipal'
@@ -7,7 +7,6 @@ import DescriHost from '@/components/recodeComponentes/RecodeDescriHost'
 import DescripcionAuto from '@/components/recodeComponentes/RecodeDescripcionAuto'
 import Reserva from '@/components/recodeComponentes/RecodeReserva'
 import Ubicacion from '@/components/recodeComponentes/RecodeUbicacion'
-import ParamIniciales from '@/components/recodeComponentes/RecodeParamIniciales'
 import { getCarById } from '@/service/serviceRecode'
 
 export default async function Page({ params }: { params: { id: string } }) {
