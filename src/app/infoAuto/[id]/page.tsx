@@ -12,22 +12,22 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const resolvedParams = await params; 
   const autoData = await getCarById(resolvedParams.id);
   
-    const auto = {
-      nombre: `${autoData.marca} ${autoData.modelo}`,
-      imagenes: autoData.imagen.map((img: { id: number, data: string  }) => ({
-        id: img.id,
-        data: img.data
-      })),
-      descripcion: `Auto ${autoData.marca} ${autoData.modelo} en excelente estado`,
+  const auto = {
+      nombre: `${autoData.marca || "Marca desconocida"} ${autoData.modelo || "Modelo desconocido"}`,
+      imagenes: autoData.imagen?.map((img: { id: number, data: string }) => ({
+          id: img.id,
+          data: img.data,
+      })) || [],
+      descripcion: `Auto ${autoData.marca || "desconocido"} ${autoData.modelo || "desconocido"} en excelente estado`,
       host: {
-        nombre: "Anfitrión Ejemplo", 
-        calificacion: 4.8,
-        autosCount: 3
+          nombre: "Anfitrión Ejemplo",
+          calificacion: 4.8,
+          autosCount: 3,
       },
-      ubicacion: `${autoData.direccion.calle}, ${autoData.direccion.zona}`,
-      precio: autoData.precio_por_dia
-    };
-    console.log("el data es: ",autoData.combustiblecarro);
+      ubicacion: `${autoData.direccion?.calle || "Calle desconocida"}, ${autoData.direccion?.zona || "Zona desconocida"}`,
+      precio: autoData.precio_por_dia || "Precio no disponible",
+  };
+      console.log("el data es: ",autoData.combustiblecarro);
   
     return (
       <>
@@ -41,12 +41,16 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
               />
               
               <InfoPrincipal
-                asientos={5}
-                puertas={4}
-                transmision="Automática"
-                combustible={autoData.combustiblecarro[0].tipocombustible.tipo_de_combustible}
-                calificacion={4.5}
-                direccion={auto.ubicacion}
+                  asientos={5}
+                  puertas={4}
+                  transmision="Automática"
+                  combustible={
+                      Array.isArray(autoData.combustiblecarro) && autoData.combustiblecarro.length > 0
+                          ? autoData.combustiblecarro[0]?.tipocombustible?.tipo_de_combustible || "No especificado"
+                          : "No especificado"
+                  }
+                  calificacion={4.5}
+                  direccion={auto.ubicacion}
               />
               
               <DescripcionAuto 
