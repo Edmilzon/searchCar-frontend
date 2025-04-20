@@ -1,7 +1,18 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+// next.config.js o next.config.mjs
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.freepik.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.motork.net',
+      }
+    ]
+  }
+}
 
 export default nextConfig;
